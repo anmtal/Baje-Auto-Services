@@ -23,8 +23,8 @@ import { animate, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12.42
   /* ---- 0a. Ambient background — drifting aurora blobs ---- */
   $$(".ambient-blob").forEach((el, i) =>
     animate(el,
-      { x: [0, 34, -22, 0], y: [0, -26, 16, 0], scale: [1, 1.14, 0.94, 1] },
-      { duration: 20 + i * 5, repeat: Infinity, ease: "easeInOut" }));
+      { x: [0, 54, -38, 0], y: [0, -44, 28, 0], scale: [1, 1.22, 0.9, 1] },
+      { duration: 13 + i * 3, repeat: Infinity, ease: "easeInOut" }));
 
   /* ---- 0b. Ambient background — slowly turning gears ([data-spin] = seconds/turn, negative = reverse) ---- */
   $$("[data-spin]").forEach((el) => {
