@@ -1,12 +1,14 @@
 /* ============================================================
    Apex Web Studio — Motion enhancement layer  (motion.dev / Framer Motion)
-   Standard across all sites. ADDITIVE ONLY: scroll-reveal entrances stay
-   CSS-driven (reliable everywhere); Motion adds spring hovers, scroll-linked
-   zoom/parallax, and continuous floats. If this module fails to load, the
-   CSS + main.js reveal system still shows and animates everything.
+   Standard across all sites. ADDITIVE + SMOOTH:
+   - scroll-reveal entrances stay CSS-driven (GPU-composited, reliable)
+   - Motion adds only cheap, GPU-friendly effects: continuous floats,
+     a pulsing "live" dot, and spring hover/press on buttons.
+   No per-scroll-frame transforms (those caused jank/flicker).
+   If this module fails to load, the CSS reveal system still animates.
    Docs: https://motion.dev  |  pinned: motion@12.42.2
    ============================================================ */
-import { animate, scroll, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12.42.2/+esm";
+import { animate, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12.42.2/+esm";
 
 (() => {
   "use strict";
@@ -14,37 +16,19 @@ import { animate, scroll, hover, press } from "https://cdn.jsdelivr.net/npm/moti
 
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
   document.documentElement.classList.add("motion-on");
-  const spring = { type: "spring", stiffness: 380, damping: 26 };
-  const progressOf = (info) =>
-    typeof info === "number" ? info : (info && info.y ? info.y.progress : 0);
+  const spring = { type: "spring", stiffness: 340, damping: 24, mass: 0.7 };
 
-  /* ---- 1. Tactile spring hover / press on interactive elements ---- */
-  $$(".btn, .feat-card, .gal-item, .price-cat, .step, .contact-card, .hours-card, .tst-arrow, .brand")
-    .forEach((el) => {
-      hover(el, () => { animate(el, { scale: 1.045 }, spring); return () => animate(el, { scale: 1 }, spring); });
-      press(el, () => { animate(el, { scale: 0.97 }, spring); return () => animate(el, { scale: 1.045 }, spring); });
-    });
+  /* ---- 1. Continuous gentle float on the floating hero tags (always-visible) ---- */
+  $$(".hero-tag").forEach((el, i) =>
+    animate(el, { y: [0, -10, 0] }, { duration: 3.4 + i * 0.6, repeat: Infinity, ease: "easeInOut" }));
 
-  /* ---- 2. Scroll-linked hero zoom (scroll-driven — manual transform for reliability) ---- */
-  $$("[data-zoom]").forEach((el) => {
-    scroll((info) => { el.style.transform = `scale(${(1 + progressOf(info) * 0.16).toFixed(4)})`; },
-      { target: el, offset: ["start end", "end start"] });
-  });
+  /* ---- 2. Pulse the hero "live" dot ---- */
+  $$(".hero-badge .dot").forEach((el) =>
+    animate(el, { scale: [1, 1.3, 1] }, { duration: 1.9, repeat: Infinity, ease: "easeInOut" }));
 
-  /* ---- 3. Scroll-linked parallax on tagged images ---- */
-  $$("[data-parallax]").forEach((el) => {
-    const d = parseFloat(el.dataset.parallax) || 30;
-    scroll((info) => { el.style.transform = `translateY(${((progressOf(info) - 0.5) * 2 * d).toFixed(1)}px)`; },
-      { target: el, offset: ["start end", "end start"] });
-  });
-
-  /* ---- 4. Continuous gentle float on floating hero tags (always-visible motion) ---- */
-  $$(".hero-tag").forEach((el, i) => {
-    animate(el, { y: [0, -11, 0] }, { duration: 3.2 + i * 0.5, repeat: Infinity, ease: "easeInOut" });
-  });
-
-  /* ---- 5. Pulse the hero "live" dot (extra life on load) ---- */
-  $$(".hero-badge .dot").forEach((el) => {
-    animate(el, { scale: [1, 1.35, 1] }, { duration: 1.8, repeat: Infinity, ease: "easeInOut" });
+  /* ---- 3. Spring hover / press on buttons only (small elements — smooth, no reveal conflict) ---- */
+  $$(".btn").forEach((el) => {
+    hover(el, () => { animate(el, { scale: 1.05 }, spring); return () => animate(el, { scale: 1 }, spring); });
+    press(el, () => { animate(el, { scale: 0.96 }, spring); return () => animate(el, { scale: 1.05 }, spring); });
   });
 })();

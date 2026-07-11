@@ -435,5 +435,9 @@ body::before {
 /* amber = trust/urgency accent used sparingly */
 .text-amber { color: var(--accent); }
 .badge-amber { background: rgba(217,119,6,0.12); color: #B45309; border:1px solid rgba(217,119,6,0.28); }
-/* Reveals stay CSS-driven (reliable in every browser). Motion adds hover/scroll/float on top. */
+/* Reveals stay CSS-driven (reliable in every browser). Motion adds float/pulse/hover on top. */
+html { overflow-anchor: none; }                 /* stop scroll-anchoring from jittering reveals */
+.reveal { transform: translate3d(0, 34px, 0); backface-visibility: hidden; }
+.reveal.in { transform: translate3d(0, 0, 0); }
+.reveal-scale { backface-visibility: hidden; }
 @media (prefers-reduced-motion: reduce){ .reveal, .reveal-scale { opacity:1 !important; transform:none !important; } }
