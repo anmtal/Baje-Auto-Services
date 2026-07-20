@@ -210,9 +210,12 @@
       }
 
       const subject = encodeURIComponent(`Appointment request — ${services}`);
+      const vehicle = [data.vehYear, data.vehMake, data.vehModel].filter(Boolean).join(" ");
       const bodyLines = [
         "Hi Baje Auto, I'd like to book a service.", "",
-        `Service(s): ${services}`, `Preferred date: ${lead.date}`, `Preferred time: ${lead.time}`, "",
+        `Vehicle: ${vehicle || "—"}`,
+        `Service(s): ${services}`, `Issue: ${data.issue || "—"}`,
+        `Preferred date: ${lead.date}`, `Preferred time: ${lead.time}`, "",
         `Name: ${lead.name}`, `Phone: ${lead.phone}`, `Email: ${lead.email || "—"}`, "",
         `Notes: ${lead.message || "—"}`
       ];

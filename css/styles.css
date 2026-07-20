@@ -4,24 +4,25 @@
    ============================================================ */
 
 :root {
-  --bg: #F6F9FD;
+  --bg: #F6F8FB;
   --bg-2: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-2: #EEF2F9;
-  --line: rgba(15,23,42,0.12);
-  --line-2: rgba(15,23,42,0.07);
+  --surface-2: #EDF1F6;
+  --line: rgba(18,42,69,0.12);
+  --line-2: rgba(18,42,69,0.07);
 
-  --navy: #1E293B;
-  --navy-deep: #0F172A;
-  --navy-bright: #2563EB;
-  --navy-soft: #E7EDFB;
-  --navy-grad: linear-gradient(135deg, #2563EB, #1D4ED8);
+  --navy: #122A45;
+  --navy-deep: #0B1D33;
+  --navy-bright: #D92D20;   /* signal red — accents + primary CTA (auto-repair spec) */
+  --navy-soft: #FCE8E6;
+  --navy-grad: linear-gradient(135deg, #16324F, #0B1D33);   /* navy — dark bands/buttons */
 
-  --accent: #D97706; /* subtle brass for stars/premium touches */
+  --accent: #D97706; /* amber for star ratings */
+  --steel: #5C6B7A;  /* steel gray — secondary */
 
   --white: #FFFFFF;
-  --ink: #0F172A;
-  --ink-soft: #55617A;
+  --ink: #0F1B2A;
+  --ink-soft: #5C6B7A;
 
   --shadow-sm: 0 2px 12px rgba(15,23,42,0.06);
   --shadow-md: 0 16px 40px -18px rgba(15,23,42,0.22);
@@ -426,12 +427,13 @@ body::before {
 /* ===== BAJE AUTO — theme overrides + Motion layer ===== */
 :root { --font-display: "Oswald", system-ui, sans-serif; }
 .hero-title, .section-title, .page-hero h1 { letter-spacing: 0.005em; }
-.btn { --bg: linear-gradient(135deg, #2563EB, #1D4ED8); --fg: #fff; }
+.btn { --bg: linear-gradient(135deg, #E5352A, #C11F16); --fg: #fff; }   /* primary CTA = signal red */
 .btn--ghost { --bg: transparent; --fg: var(--navy); }
-.btn--white { --bg: #fff; --fg: #1D4ED8; }
+.btn--white { --bg: #fff; --fg: #C11F16; }
+.btn--navy { --bg: var(--navy-grad); --fg: #fff; }   /* secondary strong action (e.g. Call) */
 .brand-logo { border-radius: 12px; height: 50px; box-shadow: var(--shadow-sm); }
 .footer-brand .brand-logo-f { border-radius: 12px; height: 60px; }
-.marquee { background: #0F172A; }
+.marquee { background: #0B1D33; }
 /* amber = trust/urgency accent used sparingly */
 .text-amber { color: var(--accent); }
 .badge-amber { background: rgba(217,119,6,0.12); color: #B45309; border:1px solid rgba(217,119,6,0.28); }
@@ -475,3 +477,19 @@ html { overflow-anchor: none; }                 /* stop scroll-anchoring from ji
 
 /* flat SVG logo mark */
 .brand-logo{box-shadow:none!important;border-radius:0!important;}
+
+/* ===== Check-engine callout band (auto-repair) ===== */
+.ce-band{ display:flex; align-items:center; gap:18px; margin-top:38px; text-decoration:none;
+  background:linear-gradient(135deg,#FFF4F3,#FCE9E7); border:1px solid rgba(217,45,32,.28);
+  border-left:5px solid var(--navy-bright); border-radius:var(--r-lg); padding:20px 26px;
+  box-shadow:var(--shadow-sm); transition:transform .3s var(--ease), box-shadow .3s; }
+.ce-band:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); }
+.ce-ico{ flex:0 0 auto; width:52px; height:52px; border-radius:14px; display:grid; place-items:center;
+  background:var(--navy-bright); color:#fff; font-size:1.35rem; box-shadow:0 8px 20px -8px rgba(217,45,32,.6); }
+.ce-txt{ flex:1; color:var(--ink); font-size:1rem; line-height:1.5; }
+.ce-txt b{ color:var(--navy); font-family:var(--font-display); font-weight:600; }
+.ce-go{ flex:0 0 auto; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display);
+  font-weight:600; color:var(--navy-bright); white-space:nowrap; }
+.ce-go i{ transition:transform .3s var(--ease); }
+.ce-band:hover .ce-go i{ transform:translateX(5px); }
+@media(max-width:680px){ .ce-band{ flex-direction:column; text-align:center; } }
