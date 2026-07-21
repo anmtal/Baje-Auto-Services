@@ -1,6 +1,6 @@
 /* ============================================================
-   JAY'S HAIR CUT — Beauty & Barber (Burlington, ON)
-   Clean navy & white design system — all pages
+   BAJE AUTO SERVICES — Auto Repair (Burlington, ON)
+   Navy + signal-red design system — all pages
    ============================================================ */
 
 :root {
@@ -34,7 +34,7 @@
   --r-lg: 22px;
   --r-xl: 32px;
 
-  --font-display: "Poppins", system-ui, sans-serif;
+  --font-display: "Oswald", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 
   --container: 1200px;
@@ -493,3 +493,7 @@ html { overflow-anchor: none; }                 /* stop scroll-anchoring from ji
 .ce-go i{ transition:transform .3s var(--ease); }
 .ce-band:hover .ce-go i{ transform:translateX(5px); }
 @media(max-width:680px){ .ce-band{ flex-direction:column; text-align:center; } }
+
+/* badge-mockup logo → clean rounded tile so it sits intentionally on the header/footer */
+.brand-logo{ border-radius:12px!important; box-shadow:0 3px 12px -3px rgba(15,23,42,.32)!important; }
+.footer-brand .brand-logo-f{ border-radius:12px!important; }
