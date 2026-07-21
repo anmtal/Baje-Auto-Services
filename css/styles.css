@@ -11,11 +11,11 @@
   --line: rgba(18,42,69,0.12);
   --line-2: rgba(18,42,69,0.07);
 
-  --navy: #122A45;
-  --navy-deep: #0B1D33;
+  --navy: #1B3A5B;
+  --navy-deep: #12293F;
   --navy-bright: #D92D20;   /* signal red — accents + primary CTA (auto-repair spec) */
   --navy-soft: #FCE8E6;
-  --navy-grad: linear-gradient(135deg, #16324F, #0B1D33);   /* navy — dark bands/buttons */
+  --navy-grad: linear-gradient(135deg, #24557f, #12293F);   /* navy — dark bands/buttons */
 
   --accent: #D97706; /* amber for star ratings */
   --steel: #5C6B7A;  /* steel gray — secondary */
@@ -433,7 +433,7 @@ body::before {
 .btn--navy { --bg: var(--navy-grad); --fg: #fff; }   /* secondary strong action (e.g. Call) */
 .brand-logo { border-radius: 12px; height: 50px; box-shadow: var(--shadow-sm); }
 .footer-brand .brand-logo-f { border-radius: 12px; height: 60px; }
-.marquee { background: #0B1D33; }
+.marquee { background: #12293F; }
 /* amber = trust/urgency accent used sparingly */
 .text-amber { color: var(--accent); }
 .badge-amber { background: rgba(217,119,6,0.12); color: #B45309; border:1px solid rgba(217,119,6,0.28); }
