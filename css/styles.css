@@ -494,6 +494,6 @@ html { overflow-anchor: none; }                 /* stop scroll-anchoring from ji
 .ce-band:hover .ce-go i{ transform:translateX(5px); }
 @media(max-width:680px){ .ce-band{ flex-direction:column; text-align:center; } }
 
-/* badge-mockup logo → clean rounded tile so it sits intentionally on the header/footer */
-.brand-logo{ border-radius:12px!important; box-shadow:0 3px 12px -3px rgba(15,23,42,.32)!important; }
-.footer-brand .brand-logo-f{ border-radius:12px!important; }
+
+/* transparent circular badge blends on the light header; dark footer gets a light chip so the navy badge reads */
+.footer-brand .brand-logo-f{ background:#eef1f5; border-radius:14px; padding:6px 9px; }
