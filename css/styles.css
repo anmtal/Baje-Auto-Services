@@ -497,3 +497,6 @@ html { overflow-anchor: none; }                 /* stop scroll-anchoring from ji
 
 /* transparent circular badge blends on the light header; dark footer gets a light chip so the navy badge reads */
 .footer-brand .brand-logo-f{ background:#eef1f5; border-radius:14px; padding:6px 9px; }
+
+/* Apex logo sweep 2026-07-21 — transparent header mark: no rectangular box-shadow/tile */
+.brand-logo{ box-shadow:none !important; border-radius:0 !important; }
